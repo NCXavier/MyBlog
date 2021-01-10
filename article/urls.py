@@ -12,5 +12,7 @@ urlpatterns = [
     # 写文章
     path("article-create/", views.article_create, name="article_create"),
     # 删除文章
-    path("article-delete/<int:id>/", views.article_delete, name="article_delete")
+    path("article-delete/<int:id>/", views.article_delete, name="article_delete"),
+    # 安全删除文章
+    path("article-safe-delete/<int:id>", views.article_safe_delete, name="article_safe_delete")
 ]
