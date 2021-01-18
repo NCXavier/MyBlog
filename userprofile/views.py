@@ -71,4 +71,3 @@ def user_delete(request, id):
             return HttpResponse("你没有删除操作的权限")
     else:
         return HttpResponse("仅接受post的请求。")
-        
