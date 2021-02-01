@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('article/', include('article.urls', namespace='article')),
     # 用户管理
-    path("userprofile/", include("userprofile.urls", namespace="userprofile")),
+    path('userprofile/', include('userprofile.urls', namespace='userprofile')),
+    path('password-reset/', include('password_reset.urls')),
 ]
