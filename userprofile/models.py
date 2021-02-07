@@ -19,13 +19,13 @@ class Profile(models.Model):
         return "user {}".format(self.user.username)
 
 # 信号接收函数，每当新建User实例时自动调用
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
-
-# 信号接收函数，每当更新User实例时自动调用
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+#@receiver(post_save, sender=User)
+#def create_user_profile(sender, instance, created, **kwargs):
+#    if created:
+#        Profile.objects.create(user=instance)
+#
+#
+## 信号接收函数，每当更新User实例时自动调用
+#@receiver(post_save, sender=User)
+#def save_user_profile(sender, instance, **kwargs):
+#    instance.profile.save()
