@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 import markdown
 from .forms import ArticlePostForm
 from .models import ArticlePost
@@ -44,7 +45,7 @@ def article_create(request):
             # 指定数据库id=1的用户为作者
             # 如果你进行过删除数据表的操作，可能会找不到id=1的用户
             # 此时请重新创建用户，并传入此用户id
-            new_article.author = User.objects.get(id=1)
+            new_article.author = User.objects.get(id=request.user.id)
             # 将新文章保存到数据库中
             new_article.save()
             # 完成后返回到文章列表
