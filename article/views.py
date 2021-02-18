@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 import markdown
 from .forms import ArticlePostForm
 from .models import ArticlePost
@@ -9,9 +10,17 @@ from .models import ArticlePost
 # Create your views here.
 
 def article_list(request):
-    # 取出所有博客文章
-    articles = ArticlePost.objects.all()
+    # 取出出文章的名称
+    article_list = ArticlePost.objects.all()
     # 需要传递给模板的对象
+
+    # 每页显示1篇文章
+    paginator = Paginator(article_list, 1)
+    # 获取url中的页码
+    page = request.GET.get("page")
+    # 将导航对象相应的页码内容返回给articles
+    articles = paginator.get_page(page)
+
     context = {"articles": articles}
     return render(request, 'article/list.html', context)
 
